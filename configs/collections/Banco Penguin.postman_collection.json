@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "b56ccb34-8027-4b5f-83aa-b1edb4e553c5",
+		"name": "Banco Penguin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42619138"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"carlos@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"codigoBanco\": \"576350\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mandar Solicitud",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Carlos Martínez\",\r\n  \"username\": \"cmartinez\",\r\n  \"dpi\": \"1234567890101\",\r\n  \"direccion\": \"Zona 1, Ciudad de Guatemala\",\r\n  \"telefono\": \"5292129451\",\r\n  \"email\": \"carlos@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"nombreTrabajo\": \"Contador\",\r\n  \"montoMensual\": 1200\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -62,6 +62,16 @@ const UserSchema = new Schema(
         message: "Los ingresos mensuales deben ser al menos Q100",
       },
     },
+    codigoBanco: {
+      type: String,
+      default: () => Math.floor(100000 + Math.random() * 900000).toString(),
+      unique: true,
+    },
+    saldo: {
+      type: Number,
+      default: 0,
+      min: [0, "El saldo no puede ser negativo"],
+    },
     role: {
       type: String,
       enum: ["ADMIN", "CLIENT"],

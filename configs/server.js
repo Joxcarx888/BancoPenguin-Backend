@@ -6,7 +6,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
 import limiter from '../src/middlewares/validar-cant-peticiones.js';
-//import authRoutes from '../src/auth/auth.routes.js';
+import authRoutes from '../src/auth/auth.routes.js';
 
 
 const middlewares = (app) => {
@@ -18,9 +18,9 @@ const middlewares = (app) => {
     app.use(limiter);
 }
 
-/*const routes = (app) =>{
+const routes = (app) =>{
     app.use('/BancoPenguin/v1/auth', authRoutes);
-}*/
+}
 
 const conectarDB = async () => {
     try{
