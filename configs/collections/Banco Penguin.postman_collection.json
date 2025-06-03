@@ -67,6 +67,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Mandar una Transferencia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fromAccount\": \"e8c2659b0a70\",\r\n  \"toAccount\": \"91afdeba51b6\",\r\n  \"amount\": 100,\r\n  \"description\": \"Pago por comida\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/movement/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"movement",
+						"crear"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
