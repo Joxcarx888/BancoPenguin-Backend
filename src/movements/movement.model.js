@@ -33,6 +33,10 @@ const MovementSchema = new Schema(
       ref: "User",
       required: [true, "Usuario que realizó el movimiento requerido"],
     },
+    active: {
+      type: Boolean,
+      default: true,
+    }
   },
   {
     timestamps: true,

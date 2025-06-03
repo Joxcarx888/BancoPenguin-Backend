@@ -44,7 +44,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Carlos Martínez\",\r\n  \"username\": \"cmartinez\",\r\n  \"dpi\": \"1234567890101\",\r\n  \"direccion\": \"Zona 1, Ciudad de Guatemala\",\r\n  \"telefono\": \"5292129451\",\r\n  \"email\": \"carlos@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"nombreTrabajo\": \"Contador\",\r\n  \"montoMensual\": 1200\r\n}\r\n",
+					"raw": "{\r\n  \"name\": \"Laura Martínez\",\r\n  \"username\": \"lmartinez\",\r\n  \"dpi\": \"1434567890101\",\r\n  \"direccion\": \"Zona 8, Ciudad de Guatemala\",\r\n  \"telefono\": \"32779371\",\r\n  \"email\": \"laura@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"nombreTrabajo\": \"Cocinera\",\r\n  \"montoMensual\": 1200\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -72,10 +72,16 @@
 			"name": "Mandar una Transferencia",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNmOGI1MDFkMzNjMzZlNmUyOTRhNmEiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ4OTk0OTM4LCJleHAiOjE3NDkwMDIxMzh9.rodkm6OAuv0Ag65zdCbTgL73LKI5Kjd7KlcOdcnsuIQ",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"fromAccount\": \"e8c2659b0a70\",\r\n  \"toAccount\": \"91afdeba51b6\",\r\n  \"amount\": 100,\r\n  \"description\": \"Pago por comida\"\r\n}\r\n\r\n",
+					"raw": "{\r\n  \"toAccount\": \"fbc5a84f28fe\",\r\n  \"amount\": 100,\r\n  \"description\": \"Pago por comida\"\r\n}\r\n\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -94,6 +100,35 @@
 						"v1",
 						"movement",
 						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelar un Movimiento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNmOGI1MDFkMzNjMzZlNmUyOTRhNmEiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ4OTk1MDI0LCJleHAiOjE3NDkwMDIyMjR9.0Qs47yBgtsYtIrKRStc5pz2PE5ebWyRoMBWJ8dB5_44",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/movement/cancelar/683f8b9a1d33c36e6e294a77",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"movement",
+						"cancelar",
+						"683f8b9a1d33c36e6e294a77"
 					]
 				}
 			},
