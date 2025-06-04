@@ -2,7 +2,9 @@
 
 import mongoose from "mongoose";
 import Usuario from "../src/users/user.model.js";
+import Account from "../src/accounts/account.model.js";
 import { hash } from "argon2";
+import crypto from "crypto";
 
 export const dbConnection = async () => {
     try {
@@ -20,9 +22,11 @@ export const dbConnection = async () => {
 
             try {
                 const adminExists = await Usuario.findOne({ role: "ADMIN" });
+
                 if (!adminExists) {
                     const adminPassword = await hash("B4Nco._PenG1N/Gua7MAl4");
-                    await Usuario.create({
+
+                    const admin = await Usuario.create({
                         name: "Banco Penguin",
                         username: "admin",
                         email: "admin@gmail.com",
@@ -30,14 +34,24 @@ export const dbConnection = async () => {
                         role: "ADMIN",
                         telefono: "59129451",
                         direccion: "Guatemala",
-                        dpi: "0000000000101", 
+                        dpi: "0000000000101",
                         nombreTrabajo: "Banco Penguin",
-                        montoMensual: 1000
+                        montoMensual: 1000,
+                        state: true,
                     });
-                    console.log("Usuario administrador creado");
+
+                    await Account.create({
+                        numeroCuenta: crypto.randomBytes(6).toString("hex"),
+                        tipoCuenta: "AHORRO",
+                        saldo: 0,
+                        owner: admin._id,
+                    });
+
+                    console.log("Usuario administrador creado con su cuenta bancaria");
                 } else {
                     console.log("Usuario administrador ya existe");
                 }
+
             } catch (error) {
                 console.error("Error al verificar/crear admin:", error);
             }

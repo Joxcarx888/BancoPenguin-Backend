@@ -1,4 +1,5 @@
 import User from "../users/user.model.js";
+import Account from "../accounts/account.model.js";
 import Movement from "../movements/movement.model.js";
 
 export const crearMovimiento = async (req, res) => {
@@ -18,24 +19,29 @@ export const crearMovimiento = async (req, res) => {
       return res.status(400).json({ message: "No se puede transferir más de Q2000 por transacción" });
     }
 
-    const usuarioEmisor = await User.findById(req.usuario._id);
-    const fromAccount = usuarioEmisor.noCuenta;
+    const emisor = await User.findById(req.usuario._id);
+    const cuentaEmisor = await Account.findOne({ owner: emisor._id });
+    const cuentaReceptor = await Account.findOne({ numeroCuenta: toAccount });
 
-    if (fromAccount === toAccount) {
+    console.log("Emisor:", emisor);
+    console.log("Cuenta Emisor:", cuentaEmisor);
+    console.log("Cuenta Receptor:", cuentaReceptor);
+
+    if (!cuentaEmisor || !cuentaReceptor) {
+      return res.status(404).json({ message: "Cuenta de emisor o receptor no encontrada" });
+    }
+
+
+    if (cuentaEmisor.numeroCuenta === toAccount) {
       return res.status(400).json({ message: "No puedes transferirte dinero a ti mismo" });
     }
 
-    const usuarioReceptor = await User.findOne({ noCuenta: toAccount });
-
-    if (!usuarioReceptor) {
-      return res.status(404).json({ message: "Cuenta destino no encontrada" });
-    }
-
-    if (!usuarioReceptor.state) {
+    const receptor = await User.findById(cuentaReceptor.owner);
+    if (!receptor.state) {
       return res.status(400).json({ message: "No se puede enviar saldo a un usuario inactivo" });
     }
 
-    if (usuarioEmisor.saldo < monto) {
+    if (cuentaEmisor.saldo < monto) {
       return res.status(400).json({ message: "Saldo insuficiente" });
     }
 
@@ -48,7 +54,7 @@ export const crearMovimiento = async (req, res) => {
     const movimientosHoy = await Movement.aggregate([
       {
         $match: {
-          fromAccount,
+          fromAccount: cuentaEmisor.numeroCuenta,
           createdAt: { $gte: inicioDelDia, $lte: finDelDia },
           active: { $ne: false },
         },
@@ -66,19 +72,19 @@ export const crearMovimiento = async (req, res) => {
       return res.status(400).json({ message: "No se puede transferir más de Q10,000 por día" });
     }
 
-    usuarioEmisor.saldo -= monto;
-    usuarioReceptor.saldo += monto;
+    cuentaEmisor.saldo -= monto;
+    cuentaReceptor.saldo += monto;
 
-    await usuarioEmisor.save();
-    await usuarioReceptor.save();
+    await cuentaEmisor.save();
+    await cuentaReceptor.save();
 
     const movimiento = await Movement.create({
       amount: monto,
-      fromAccount,
-      toAccount,
+      fromAccount: cuentaEmisor.numeroCuenta,
+      toAccount: cuentaReceptor.numeroCuenta,
       description,
-      saldoPosterior: usuarioEmisor.saldo,
-      createdBy: usuarioEmisor._id,
+      saldoPosterior: cuentaEmisor.saldo,
+      createdBy: emisor._id,
       active: true,
     });
 
@@ -94,7 +100,6 @@ export const crearMovimiento = async (req, res) => {
     });
   }
 };
-
 
 export const cancelarMovimiento = async (req, res) => {
   const { movimientoId } = req.params;
@@ -125,18 +130,18 @@ export const cancelarMovimiento = async (req, res) => {
       return res.status(400).json({ message: "El movimiento ya está cancelado" });
     }
 
-    const emisor = await User.findOne({ noCuenta: movimiento.fromAccount });
-    const receptor = await User.findOne({ noCuenta: movimiento.toAccount });
+    const cuentaEmisor = await Account.findOne({ numeroCuenta: movimiento.fromAccount });
+    const cuentaReceptor = await Account.findOne({ numeroCuenta: movimiento.toAccount });
 
-    if (!emisor || !receptor) {
-      return res.status(404).json({ message: "Usuarios relacionados no encontrados" });
+    if (!cuentaEmisor || !cuentaReceptor) {
+      return res.status(404).json({ message: "Cuentas relacionadas no encontradas" });
     }
 
-    receptor.saldo -= movimiento.amount;
-    emisor.saldo += movimiento.amount;
+    cuentaReceptor.saldo -= movimiento.amount;
+    cuentaEmisor.saldo += movimiento.amount;
 
-    await emisor.save();
-    await receptor.save();
+    await cuentaEmisor.save();
+    await cuentaReceptor.save();
 
     movimiento.active = false;
     await movimiento.save();
@@ -147,4 +152,3 @@ export const cancelarMovimiento = async (req, res) => {
     return res.status(500).json({ message: "Error al cancelar el movimiento", error: error.message });
   }
 };
-
