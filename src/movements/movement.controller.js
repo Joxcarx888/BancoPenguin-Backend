@@ -3,7 +3,7 @@ import Account from "../accounts/account.model.js";
 import Movement from "../movements/movement.model.js";
 
 export const crearMovimiento = async (req, res) => {
-  const { toAccount, amount, description = "" } = req.body;
+  const { fromAccount, toAccount, amount, description = "" } = req.body;
 
   try {
     if (!req.usuario) {
@@ -19,25 +19,30 @@ export const crearMovimiento = async (req, res) => {
       return res.status(400).json({ message: "No se puede transferir más de Q2000 por transacción" });
     }
 
-    const emisor = await User.findById(req.usuario._id);
-    const cuentaEmisor = await Account.findOne({ owner: emisor._id });
-    const cuentaReceptor = await Account.findOne({ numeroCuenta: toAccount });
-
-    console.log("Emisor:", emisor);
-    console.log("Cuenta Emisor:", cuentaEmisor);
-    console.log("Cuenta Receptor:", cuentaReceptor);
-
-    if (!cuentaEmisor || !cuentaReceptor) {
-      return res.status(404).json({ message: "Cuenta de emisor o receptor no encontrada" });
+    const cuentaEmisor = await Account.findOne({ numeroCuenta: fromAccount, owner: req.usuario._id });
+    if (!cuentaEmisor) {
+      return res.status(404).json({ message: "Cuenta de origen no encontrada o no pertenece al usuario" });
     }
 
+    const cuentaReceptor = await Account.findOne({ numeroCuenta: toAccount });
+    if (!cuentaReceptor) {
+      return res.status(404).json({ message: "Cuenta de destino no encontrada" });
+    }
 
-    if (cuentaEmisor.numeroCuenta === toAccount) {
+    if (!cuentaEmisor.state) {
+      return res.status(400).json({ message: "La cuenta emisora está inactiva" });
+    }
+
+    if (!cuentaReceptor.state) {
+      return res.status(400).json({ message: "La cuenta receptora está inactiva" });
+    }
+
+    if (fromAccount === toAccount) {
       return res.status(400).json({ message: "No puedes transferirte dinero a ti mismo" });
     }
 
     const receptor = await User.findById(cuentaReceptor.owner);
-    if (!receptor.state) {
+    if (!receptor || !receptor.state) {
       return res.status(400).json({ message: "No se puede enviar saldo a un usuario inactivo" });
     }
 
@@ -84,7 +89,7 @@ export const crearMovimiento = async (req, res) => {
       toAccount: cuentaReceptor.numeroCuenta,
       description,
       saldoPosterior: cuentaEmisor.saldo,
-      createdBy: emisor._id,
+      createdBy: req.usuario._id,
       active: true,
     });
 
@@ -100,6 +105,8 @@ export const crearMovimiento = async (req, res) => {
     });
   }
 };
+
+
 
 export const cancelarMovimiento = async (req, res) => {
   const { movimientoId } = req.params;

@@ -45,6 +45,7 @@ export const dbConnection = async () => {
                         tipoCuenta: "AHORRO",
                         saldo: 0,
                         owner: admin._id,
+                        state: true
                     });
 
                     console.log("Usuario administrador creado con su cuenta bancaria");

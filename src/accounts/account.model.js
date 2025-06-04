@@ -23,11 +23,16 @@ const AccountSchema = new Schema(
       ref: "User",
       required: true,
     },
+    state: {
+      type: Boolean,
+      default: false,  // por defecto inactiva
+    },
   },
   {
     timestamps: true,
     versionKey: false,
   }
 );
+
 
 export default model("Account", AccountSchema);
