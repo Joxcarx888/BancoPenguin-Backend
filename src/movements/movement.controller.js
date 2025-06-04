@@ -21,7 +21,6 @@ export const crearMovimiento = async (req, res) => {
     const usuarioEmisor = await User.findById(req.usuario._id);
     const fromAccount = usuarioEmisor.noCuenta;
 
-    // Aquí la validación para evitar transferencia a sí mismo:
     if (fromAccount === toAccount) {
       return res.status(400).json({ message: "No puedes transferirte dinero a ti mismo" });
     }

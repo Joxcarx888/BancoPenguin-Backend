@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import crypto from "crypto";
 
 const UserSchema = new Schema(
   {
@@ -14,11 +13,6 @@ const UserSchema = new Schema(
       unique: true,
       required: [true, "Username es requerido"],
       trim: true,
-    },
-    noCuenta: {
-      type: String,
-      default: () => crypto.randomBytes(6).toString("hex"),
-      unique: true,
     },
     dpi: {
       type: String,
@@ -66,11 +60,6 @@ const UserSchema = new Schema(
       type: String,
       default: () => Math.floor(100000 + Math.random() * 900000).toString(),
       unique: true,
-    },
-    saldo: {
-      type: Number,
-      default: 0,
-      min: [0, "El saldo no puede ser negativo"],
     },
     role: {
       type: String,
