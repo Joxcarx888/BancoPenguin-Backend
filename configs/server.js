@@ -9,6 +9,8 @@ import limiter from '../src/middlewares/validar-cant-peticiones.js';
 import authRoutes from '../src/auth/auth.routes.js';
 import movementRoutes from '../src/movements/movement.routes.js'
 import accountRoutes from '../src/accounts/account.routes.js'
+import userRoutes from '../src/users/user.routes.js';
+
 
 
 const middlewares = (app) => {
@@ -24,6 +26,7 @@ const routes = (app) =>{
     app.use('/BancoPenguin/v1/auth', authRoutes);
     app.use('/BancoPenguin/v1/movement', movementRoutes);
     app.use('/BancoPenguin/v1/account', accountRoutes);
+    app.use('/BancoPenguin/v1/user', userRoutes);
 }
 
 const conectarDB = async () => {
