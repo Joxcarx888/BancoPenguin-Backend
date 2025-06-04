@@ -1,4 +1,4 @@
-# BancoPenguin# 💬 Acciones de usuario terminadas ✅
+# BancoPenguin 🐧 💬 Acciones de usuario terminadas ✅
 
 [![Frontend](https://img.shields.io/badge/Frontend-Repositorio-orange?style=for-the-badge&logo=github)](https://github.com/MejiaBravoLuis/Banco-Front)
 

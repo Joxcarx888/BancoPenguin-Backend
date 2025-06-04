@@ -43,13 +43,12 @@ router.get(
 );
 
 router.put(
-  "/me/:id",
+  "/me",
   [
-    validarJWT,
-    check("id", "ID de usuario inválido").isMongoId(),
-    validarCampos,
+    validarJWT, 
+    validarCampos,  
   ],
-  updateMyProfile
+  updateMyProfile  
 );
 
 router.put(

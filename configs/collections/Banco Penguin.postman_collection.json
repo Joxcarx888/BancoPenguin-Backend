@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1ec730e6-861e-4337-9492-348eb78683de",
+		"_postman_id": "75aa23ee-7b29-432c-9594-3bf93d66936d",
 		"name": "Banco Penguin",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "42630298"
@@ -233,13 +233,13 @@
 				"header": [
 					{
 						"key": "x-token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNlZjRmMzNjZTdkMTIzZjA2ZTQ1OTMiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ5MDc0MzkwLCJleHAiOjE3NDkwODE1OTB9.pphqAGKphQFbHg0lWayn-vH0pDaS15RWt33nS4EbDyg",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNlZjRmMzNjZTdkMTIzZjA2ZTQ1OTMiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ5MDc5MDU0LCJleHAiOjE3NDkwODYyNTR9.mQIRvQmZx0l7qSO9hB7x-UsE-oSE9gir_NXISJRnSq8",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"Carlos Orozco\",\r\n  \"direccion\": \"Calle Nueva 456, Ciudad\",\r\n  \"nombreTrabajo\": \"Desarrollador Web\",\r\n  \"montoMensual\": 5000\r\n}\r\n",
+					"raw": "{\r\n  \"name\": \"Carlos Hueco\",\r\n  \"direccion\": \"Calle Nueva 456, Ciudad\",\r\n  \"nombreTrabajo\": \"Desarrollador Web\",\r\n  \"montoMensual\": 5000\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -247,7 +247,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3333/BancoPenguin/v1/user/me/683ef4f33ce7d123f06e4593",
+					"raw": "http://localhost:3333/BancoPenguin/v1/user/me/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -258,7 +258,7 @@
 						"v1",
 						"user",
 						"me",
-						"683ef4f33ce7d123f06e4593"
+						""
 					]
 				}
 			},

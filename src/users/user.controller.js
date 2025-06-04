@@ -73,10 +73,8 @@ export const getMyProfile = async (req, res) => {
 
 export const updateMyProfile = async (req, res) => {
   try {
-    const { id } = req.params;
     const loggedUser = req.usuario;
-
-    if (id !== loggedUser._id.toString()) {
+    if (!loggedUser) {
       return res.status(403).json({
         success: false,
         msg: 'No tienes permiso para editar otro perfil.',
@@ -99,7 +97,7 @@ export const updateMyProfile = async (req, res) => {
       }
     });
 
-    const updatedUser = await User.findByIdAndUpdate(id, updateData, {
+    const updatedUser = await User.findByIdAndUpdate(loggedUser._id, updateData, {
       new: true,
       runValidators: true,
     });
