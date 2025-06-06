@@ -7,12 +7,28 @@ import {
   updateMyProfile,
   updateUserByAdmin,
   deleteUserByAdmin,
+  forgotPassword,
+  resetPassword
 } from "./user.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 import { tieneRole } from "../middlewares/validar-roles.js";
 
 const router = Router();
+
+router.post(
+  '/forgot-password',
+   forgotPassword
+);
+
+router.post
+(
+  '/reset-password/:token',
+  [
+    check("newPassword", "La nueva contraseña debe tener al menos 8 caracteres").optional().isLength({ min: 8 }),
+  ],
+   resetPassword
+);
 
 router.get(
   "/",
