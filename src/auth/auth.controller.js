@@ -2,6 +2,7 @@ import Usuario from '../users/user.model.js';
 import Account from '../accounts/account.model.js';
 import { hash, verify } from 'argon2';
 import { generarJWT } from '../helpers/generate-jwt.js';
+import { sendWelcomeEmail } from "../helpers/sendEmail.js";
 import { validateLogin, validateRegisterUser } from '../middlewares/validate-auth.js';
 
 export const login = async (req, res) => {
@@ -84,6 +85,13 @@ export const register = async (req, res) => {
     await Account.create({
       tipoCuenta: data.tipoCuenta || "AHORRO",
       owner: user._id,
+    });
+
+    await sendWelcomeEmail({
+      to: user.email,
+      username: user.username,
+      codigoBanco: user.codigoBanco,
+      bankName: "Banco Penguin"
     });
 
     return res.status(201).json({
