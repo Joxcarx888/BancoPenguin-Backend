@@ -25,7 +25,7 @@ const AccountSchema = new Schema(
     },
     state: {
       type: Boolean,
-      default: false,  // por defecto inactiva
+      default: false,
     },
   },
   {

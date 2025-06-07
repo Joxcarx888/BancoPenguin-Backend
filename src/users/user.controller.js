@@ -299,3 +299,35 @@ export const deleteUserByAdmin = async (req, res) => {
     });
   }
 };
+
+export const acceptUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ msg: "Usuario no encontrado" });
+    }
+
+    user.state = true;
+    await user.save();
+
+    return res.status(200).json({
+      msg: "Usuario activado correctamente",
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        state: user.state
+      }
+    });
+
+  } catch (error) {
+    console.error("Error en acceptUser:", error);
+    return res.status(500).json({
+      msg: "Error al activar usuario",
+      error: error.message
+    });
+  }
+};
+
