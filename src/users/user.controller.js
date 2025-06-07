@@ -300,6 +300,23 @@ export const deleteUserByAdmin = async (req, res) => {
   }
 };
 
+export const getPendingUsers = async (req, res) => {
+  try {
+    const users = await User.find({ role: 'CLIENT', state: false }).select("name email username role");
+
+    return res.status(200).json({
+      success: true,
+      users,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      msg: "Error al obtener usuarios pendientes",
+      error: error.message,
+    });
+  }
+};
+
 export const acceptUser = async (req, res) => {
   try {
     const { id } = req.params;

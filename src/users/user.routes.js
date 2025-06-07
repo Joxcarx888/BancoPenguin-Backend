@@ -9,7 +9,8 @@ import {
   deleteUserByAdmin,
   forgotPassword,
   resetPassword,
-  acceptUser
+  acceptUser,
+  getPendingUsers
 } from "./user.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
@@ -89,6 +90,14 @@ router.delete(
   ],
   deleteUserByAdmin
 );
+
+router.get(
+  '/pending', 
+  [
+    validarJWT, tieneRole('ADMIN')
+  ],
+  getPendingUsers);
+
 
 router.put(
   "/aceptar/:id",
