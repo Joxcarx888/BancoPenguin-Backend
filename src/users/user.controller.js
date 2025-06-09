@@ -4,41 +4,6 @@ import { sendResetPasswordEmail } from "../helpers/sendEmail.js";
 import nodemailer from 'nodemailer';
 import { hash } from 'argon2';
 
-export const sendResetEmail = async (to, token) => {
-  try {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
-
-    const resetUrl = `http://localhost:3333/penguinManagement/v1/users/reset-password/${token}`;
-
-    const mailOptions = {
-      from: `"Banco Penguin" <${process.env.EMAIL_USER}>`,
-      to,
-      subject: 'Restablecimiento de contraseña - Banco Penguin',
-      html: `
-        <h2>Restablecimiento de contraseña</h2>
-        <p>Hola, has solicitado restablecer tu contraseña.</p>
-        <p>Haz clic en el siguiente enlace para crear una nueva contraseña:</p>
-        <p><a href="${resetUrl}" target="_blank" style="background:#4a90e2;color:#fff;padding:10px 20px;text-decoration:none;border-radius:5px;">Restablecer contraseña</a></p>
-        <p>Este enlace será válido por 30 minutos.</p>
-        <p>Si no solicitaste este cambio, puedes ignorar este mensaje.</p>
-      `
-    };
-
-    const info = await transporter.sendMail(mailOptions);
-    console.log('📨 Email enviado:', info.response);
-  } catch (error) {
-    console.error('❌ Error al enviar el correo:', error.message);
-  }
-};
-
-
-
 export const forgotPassword = async (req, res) => {
   const { email } = req.body;
 
@@ -56,7 +21,7 @@ export const forgotPassword = async (req, res) => {
     user.resetTokenExpires = new Date(expire);
     await user.save();
 
-    await sendResetEmail(email, token); 
+    await sendResetPasswordEmail(email, token); 
 
     return res.status(200).json({ msg: 'Token de recuperación enviado al correo' });
   } catch (err) {
