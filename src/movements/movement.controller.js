@@ -159,3 +159,38 @@ export const cancelarMovimiento = async (req, res) => {
     return res.status(500).json({ message: "Error al cancelar el movimiento", error: error.message });
   }
 };
+
+export const getActiveMovements = async (req, res) => {
+  try {
+    const movimientos = await Movement.find({ active: true }).sort({ createdAt: -1 });
+    return res.status(200).json(movimientos);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Error al obtener movimientos activos", error: error.message });
+  }
+};
+
+export const getCanceledMovements = async (req, res) => {
+  try {
+    const movimientos = await Movement.find({ active: false }).sort({ createdAt: -1 });
+    return res.status(200).json(movimientos);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Error al obtener movimientos cancelados", error: error.message });
+  }
+};
+
+export const getMyMovements = async (req, res) => {
+  try {
+    if (!req.usuario) {
+      return res.status(401).json({ message: "Usuario no autenticado" });
+    }
+
+    const movimientos = await Movement.find({ createdBy: req.usuario._id }).sort({ createdAt: -1 });
+
+    return res.status(200).json(movimientos);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Error al obtener tus movimientos", error: error.message });
+  }
+};

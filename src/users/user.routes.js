@@ -8,7 +8,9 @@ import {
   updateUserByAdmin,
   deleteUserByAdmin,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  acceptUser,
+  getPendingUsers
 } from "./user.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
@@ -87,6 +89,24 @@ router.delete(
     validarCampos,
   ],
   deleteUserByAdmin
+);
+
+router.get(
+  '/pending', 
+  [
+    validarJWT, tieneRole('ADMIN')
+  ],
+  getPendingUsers);
+
+
+router.put(
+  "/aceptar/:id",
+  [
+    validarJWT,
+    check("id", "El ID no es válido").isMongoId(),
+    validarCampos
+  ],
+  acceptUser
 );
 
 export default router;

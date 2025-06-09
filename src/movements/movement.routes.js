@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { crearMovimiento, cancelarMovimiento } from "./movement.controller.js";
+import { crearMovimiento, cancelarMovimiento, getActiveMovements, getCanceledMovements, getMyMovements } from "./movement.controller.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
@@ -17,5 +17,9 @@ router.put(
     validarJWT,
     cancelarMovimiento
 );
+
+router.get("/activos", validarJWT, getActiveMovements);
+router.get("/cancelados", validarJWT, getCanceledMovements);
+router.get("/mios", validarJWT, getMyMovements);
 
 export default router;
