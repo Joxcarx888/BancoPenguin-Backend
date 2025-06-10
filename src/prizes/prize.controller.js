@@ -60,3 +60,20 @@ export const editarPrize = async (req, res) => {
     });
   }
 };
+
+export const listarPrizes = async (req, res) => {
+  try {
+    const prizes = await Prize.find({ activo: true });
+
+    return res.status(200).json({
+      message: "Lista de premios obtenida exitosamente",
+      prizes,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error al obtener la lista de premios",
+      error: error.message,
+    });
+  }
+};
