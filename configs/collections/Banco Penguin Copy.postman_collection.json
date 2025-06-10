@@ -1,0 +1,420 @@
+{
+	"info": {
+		"_postman_id": "ed1d5bd0-d753-4a4d-b7a8-bb3461093698",
+		"name": "Banco Penguin Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42619138"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"giovannicarrera@gmail.com\",\r\n  \"password\": \"jjVuGB8u.\",\r\n  \"codigoBanco\": \"607494\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Cuentas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNGVhNmU1MTJmNDIxNTc2MmU1OTUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDkyNTc5MDcsImV4cCI6MTc0OTI2NTEwN30.WH8TABzwZGULpOhVFH0ElErtKE1Sm-iMc1qge__tvv8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"toAccount\": \"ee26e67e942e\",\r\n  \"amount\": 1000,\r\n  \"description\": \"Pago por comida\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/account/mias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"account",
+						"mias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mandar Solicitud",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Laura Martínez\",\r\n  \"username\": \"lmartinez\",\r\n  \"dpi\": \"1434567890101\",\r\n  \"direccion\": \"Zona 8, Ciudad de Guatemala\",\r\n  \"telefono\": \"32779371\",\r\n  \"email\": \"laura@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"nombreTrabajo\": \"Cocinera\",\r\n  \"montoMensual\": 1200\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mandar una Transferencia",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNmOGI1MDFkMzNjMzZlNmUyOTRhNmEiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ4OTk0OTM4LCJleHAiOjE3NDkwMDIxMzh9.rodkm6OAuv0Ag65zdCbTgL73LKI5Kjd7KlcOdcnsuIQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"toAccount\": \"fbc5a84f28fe\",\r\n  \"amount\": 100,\r\n  \"description\": \"Pago por comida\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/movement/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"movement",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solicitar Cuenta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNmOGI1MDFkMzNjMzZlNmUyOTRhNmEiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ4OTk0OTM4LCJleHAiOjE3NDkwMDIxMzh9.rodkm6OAuv0Ag65zdCbTgL73LKI5Kjd7KlcOdcnsuIQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"toAccount\": \"fbc5a84f28fe\",\r\n  \"amount\": 100,\r\n  \"description\": \"Pago por comida\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/movement/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"movement",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelar un Movimiento",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNmOGI1MDFkMzNjMzZlNmUyOTRhNmEiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ4OTk1MDI0LCJleHAiOjE3NDkwMDIyMjR9.0Qs47yBgtsYtIrKRStc5pz2PE5ebWyRoMBWJ8dB5_44",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/movement/cancelar/683f8b9a1d33c36e6e294a77",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"movement",
+						"cancelar",
+						"683f8b9a1d33c36e6e294a77"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar ADMIN",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNlZjRmMzNjZTdkMTIzZjA2ZTQ1OTMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDkwNzE4ODEsImV4cCI6MTc0OTA3OTA4MX0.bNJjQ9NJxW2XPG6VkKgQ-hJEH_47iQ_fiacVi4wRjvw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar usuarios ADMIN",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNlZjRmMzNjZTdkMTIzZjA2ZTQ1OTMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDkwNzM5NTMsImV4cCI6MTc0OTA4MTE1M30.NvPN3_j5BBcqx3-MyKute0zhdwHkdQ_J8n6erqvZ9VY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Carlos Martínez\",\r\n  \"direccion\": \"Calle Ficticia 123, Ciudad\",\r\n  \"nombreTrabajo\": \"Diseñador Gráfico\",\r\n  \"montoMensual\": 4500\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/user/683ef620abc123def4567890",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"user",
+						"683ef620abc123def4567890"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver mi perfil",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNlZjRmMzNjZTdkMTIzZjA2ZTQ1OTMiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ5MDc1MDQ4LCJleHAiOjE3NDkwODIyNDh9.Wc3Zy1C_qx93OIvwnN8R0vEOTTIGIFJFioFCn58vxlg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/user/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar mi perfil",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNlZjRmMzNjZTdkMTIzZjA2ZTQ1OTMiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ5MDc0MzkwLCJleHAiOjE3NDkwODE1OTB9.pphqAGKphQFbHg0lWayn-vH0pDaS15RWt33nS4EbDyg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Carlos Orozco\",\r\n  \"direccion\": \"Calle Nueva 456, Ciudad\",\r\n  \"nombreTrabajo\": \"Desarrollador Web\",\r\n  \"montoMensual\": 5000\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/user/me/683ef4f33ce7d123f06e4593",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"user",
+						"me",
+						"683ef4f33ce7d123f06e4593"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aceptar Usuarios",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNGVhNmU1MTJmNDIxNTc2MmU1OTUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDkyNTY4NTMsImV4cCI6MTc0OTI2NDA1M30.n1-_UoO1EwEuWyWVyOP4ypkOUQW7VUOe340eVpjx_Qg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/user/aceptar/68438ba50311d6520b3647d5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"user",
+						"aceptar",
+						"68438ba50311d6520b3647d5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar cliente ADMIN",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNlZjRmMzNjZTdkMTIzZjA2ZTQ1OTMiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDkwNzQ3MzYsImV4cCI6MTc0OTA4MTkzNn0.twMpMcY6iKPXvIzz3If72dYLBP86IrTIso_nHH5IeBk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/user/683ef620abc123def4567890",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"user",
+						"683ef620abc123def4567890"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

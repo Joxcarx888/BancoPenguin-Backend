@@ -85,6 +85,7 @@ export const register = async (req, res) => {
     await Account.create({
       tipoCuenta: data.tipoCuenta || "AHORRO",
       owner: user._id,
+      puntos: 100,
     });
 
     await sendWelcomeEmail({
