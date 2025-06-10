@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"carlos@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"codigoBanco\": \"576350\"\r\n}\r\n",
+					"raw": "{\r\n  \"email\": \"giovannicarrera@gmail.com\",\r\n  \"password\": \"jjVuGB8u.\",\r\n  \"codigoBanco\": \"607494\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -32,6 +32,46 @@
 						"v1",
 						"auth",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Cuentas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQyNGVhNmU1MTJmNDIxNTc2MmU1OTUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NDkyNTc5MDcsImV4cCI6MTc0OTI2NTEwN30.WH8TABzwZGULpOhVFH0ElErtKE1Sm-iMc1qge__tvv8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"toAccount\": \"ee26e67e942e\",\r\n  \"amount\": 1000,\r\n  \"description\": \"Pago por comida\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/account/mias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"account",
+						"mias"
 					]
 				}
 			},
@@ -70,6 +110,43 @@
 		},
 		{
 			"name": "Mandar una Transferencia",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODNmOGI1MDFkMzNjMzZlNmUyOTRhNmEiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ4OTk0OTM4LCJleHAiOjE3NDkwMDIxMzh9.rodkm6OAuv0Ag65zdCbTgL73LKI5Kjd7KlcOdcnsuIQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"toAccount\": \"fbc5a84f28fe\",\r\n  \"amount\": 100,\r\n  \"description\": \"Pago por comida\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/movement/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"movement",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Solicitar Cuenta",
 			"request": {
 				"method": "POST",
 				"header": [

@@ -80,6 +80,12 @@ export const crearMovimiento = async (req, res) => {
     cuentaEmisor.saldo -= monto;
     cuentaReceptor.saldo += monto;
 
+    if (cuentaEmisor.owner.toString() !== cuentaReceptor.owner.toString()) {
+      const puntosGanados = Math.floor(monto / 100);
+      cuentaEmisor.puntos = (cuentaEmisor.puntos || 0) + puntosGanados;
+    }
+
+
     await cuentaEmisor.save();
     await cuentaReceptor.save();
 
@@ -105,8 +111,6 @@ export const crearMovimiento = async (req, res) => {
     });
   }
 };
-
-
 
 export const cancelarMovimiento = async (req, res) => {
   const { movimientoId } = req.params;
@@ -147,6 +151,11 @@ export const cancelarMovimiento = async (req, res) => {
     cuentaReceptor.saldo -= movimiento.amount;
     cuentaEmisor.saldo += movimiento.amount;
 
+    if (cuentaEmisor.owner.toString() !== cuentaReceptor.owner.toString()) {
+      const puntosARestar = Math.floor(movimiento.amount / 100);
+      cuentaEmisor.puntos = Math.max(0, (cuentaEmisor.puntos || 0) - puntosARestar);
+    }
+    
     await cuentaEmisor.save();
     await cuentaReceptor.save();
 
@@ -159,6 +168,7 @@ export const cancelarMovimiento = async (req, res) => {
     return res.status(500).json({ message: "Error al cancelar el movimiento", error: error.message });
   }
 };
+
 
 export const getActiveMovements = async (req, res) => {
   try {

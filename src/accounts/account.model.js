@@ -23,6 +23,11 @@ const AccountSchema = new Schema(
       ref: "User",
       required: true,
     },
+    puntos: {
+      type: Number,
+      default: 0,
+      min: [0, "Los puntos no pueden ser negativos"],
+    },
     state: {
       type: Boolean,
       default: false,
