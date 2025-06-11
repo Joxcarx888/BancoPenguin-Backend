@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ed1d5bd0-d753-4a4d-b7a8-bb3461093698",
+		"_postman_id": "c0b8a3cb-04c7-4176-af13-79868e0fbeb6",
 		"name": "Banco Penguin Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "42619138"
+		"_exporter_id": "42619741"
 	},
 	"item": [
 		{
@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"giovannicarrera@gmail.com\",\r\n  \"password\": \"jjVuGB8u.\",\r\n  \"codigoBanco\": \"607494\"\r\n}\r\n",
+					"raw": "{\r\n  \"email\": \"carlos@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"codigoBanco\": \"465248\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -411,6 +411,83 @@
 						"v1",
 						"user",
 						"683ef620abc123def4567890"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Canjear recompensa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQwN2EwNzM4ZTk3MjZjODdiMDc1YTUiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ5NjYyODk5LCJleHAiOjE3NDk2NzAwOTl9.jXHQ0RPV8KE0fNjZVii8UxTDWhU2gwcGSc-03mQ1qTM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"prizeId\": \"6849ae4a5bda6cdd57e44918\",\r\n    \"numeroCuenta\": \"cd9cfbf83882\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/redemption/canjear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"redemption",
+						"canjear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar recompensas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODQwN2EwNzM4ZTk3MjZjODdiMDc1YTUiLCJyb2xlIjoiQ0xJRU5UIiwiaWF0IjoxNzQ5NjYyODk5LCJleHAiOjE3NDk2NzAwOTl9.jXHQ0RPV8KE0fNjZVii8UxTDWhU2gwcGSc-03mQ1qTM",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3333/BancoPenguin/v1/redemption/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"BancoPenguin",
+						"v1",
+						"redemption",
+						""
 					]
 				}
 			},

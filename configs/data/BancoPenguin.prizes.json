@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "6849ae4a5bda6cdd57e44918"
+  },
+  "nombre": "Otuk",
+  "precioPuntos": 300,
+  "descripcion": "Puta2",
+  "activo": true,
+  "createdAt": {
+    "$date": "2025-06-11T16:26:50.899Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-11T16:26:56.585Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6849b1535bda6cdd57e4493e"
+  },
+  "nombre": "sexo",
+  "precioPuntos": 2,
+  "descripcion": "si porfa",
+  "activo": true,
+  "createdAt": {
+    "$date": "2025-06-11T16:39:47.988Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-11T16:39:47.988Z"
+  },
+  "__v": 0
+}]

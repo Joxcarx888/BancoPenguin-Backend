@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "6849b5417c6bb47d60b42bbe"
+  },
+  "numeroCuenta": "cd9cfbf83882",
+  "tipoCuenta": "AHORRO",
+  "saldo": 0,
+  "owner": {
+    "$oid": "6849b5417c6bb47d60b42bbb"
+  },
+  "puntos": 0,
+  "state": true,
+  "createdAt": {
+    "$date": "2025-06-11T16:56:33.927Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-11T16:56:33.927Z"
+  }
+}]

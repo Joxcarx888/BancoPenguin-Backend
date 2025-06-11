@@ -11,6 +11,7 @@ import movementRoutes from '../src/movements/movement.routes.js'
 import accountRoutes from '../src/accounts/account.routes.js'
 import userRoutes from '../src/users/user.routes.js';
 import prizeRoutes from '../src/prizes/prize.routes.js';
+import redemptionRoutes from '../src/redemption/redemption.routes.js';
 
 
 
@@ -29,6 +30,7 @@ const routes = (app) =>{
     app.use('/BancoPenguin/v1/account', accountRoutes);
     app.use('/BancoPenguin/v1/user', userRoutes);
     app.use('/BancoPenguin/v1/prize', prizeRoutes);
+    app.use('/BancoPenguin/v1/redemption', redemptionRoutes);
 }
 
 const conectarDB = async () => {

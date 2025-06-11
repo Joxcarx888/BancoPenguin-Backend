@@ -1,32 +1,6 @@
 [{
   "_id": {
-    "$oid": "683ef3679e287bae6e0780ea"
-  },
-  "name": "Banco Penguin",
-  "username": "admin",
-  "dpi": "0000000000101",
-  "direccion": "Guatemala",
-  "telefono": "59129451",
-  "email": "admin@gmail.com",
-  "password": "$argon2id$v=19$m=65536,t=3,p=4$JGu1h9B/0gQAj4fLz7/74w$VmYbmu2YtxzvMjV4ROcJszzp0TEt8FqZIQ/8yEAB7DE",
-  "nombreTrabajo": "Banco Penguin",
-  "montoMensual": 1000,
-  "role": "ADMIN",
-  "state": true,
-  "resetToken": null,
-  "resetTokenExpires": null,
-  "noCuenta": "99cdd36c3b1c",
-  "codigoBanco": "265200",
-  "createdAt": {
-    "$date": "2025-06-03T13:06:47.387Z"
-  },
-  "updatedAt": {
-    "$date": "2025-06-03T13:06:47.387Z"
-  }
-},
-{
-  "_id": {
-    "$oid": "683ef4f33ce7d123f06e4593"
+    "$oid": "68407a0738e9726c87b075a5"
   },
   "name": "Carlos Martínez",
   "username": "cmartinez",
@@ -34,19 +8,43 @@
   "direccion": "Zona 1, Ciudad de Guatemala",
   "telefono": "5292129451",
   "email": "carlos@gmail.com",
-  "password": "$argon2id$v=19$m=65536,t=3,p=4$GBcg4I53WeO2ogbNpj/cwQ$664co37WWxHlnQpES/aPotV/r4iuLZlv0B9wPy4d3BM",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$EnoHweS6aWwgefdmqnpURw$FeRoeuZGp+BnTG3bubAnDXkG3k8urW0QBQ1/qOLjzwU",
   "nombreTrabajo": "Contador",
   "montoMensual": 1200,
   "role": "CLIENT",
   "state": true,
   "resetToken": null,
   "resetTokenExpires": null,
-  "noCuenta": "ed6285bd32ed",
-  "codigoBanco": "576350",
+  "codigoBanco": "465248",
   "createdAt": {
-    "$date": "2025-06-03T13:13:23.967Z"
+    "$date": "2025-06-04T16:53:27.566Z"
   },
   "updatedAt": {
-    "$date": "2025-06-03T13:13:23.967Z"
+    "$date": "2025-06-04T16:53:27.566Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68407f75b724f522dab12220"
+  },
+  "name": "Banco Penguin",
+  "username": "admin",
+  "dpi": "0000000000101",
+  "direccion": "Guatemala",
+  "telefono": "59129451",
+  "email": "admin@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$gu/l7+rZRC6TxJxv1Z7dew$xlbtvnERUpRDTfIJ1mCRfpGiQLbUcdhr7/6ZtwLAQNU",
+  "nombreTrabajo": "Banco Penguin",
+  "montoMensual": 1000,
+  "role": "ADMIN",
+  "state": true,
+  "resetToken": null,
+  "resetTokenExpires": null,
+  "codigoBanco": "319306",
+  "createdAt": {
+    "$date": "2025-06-04T17:16:37.221Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-04T17:16:37.221Z"
   }
 }]
