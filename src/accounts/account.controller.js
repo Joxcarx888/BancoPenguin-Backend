@@ -32,7 +32,7 @@ export const crearCuenta = async (req, res) => {
 
 export const getPendingAccounts = async (req, res) => {
   try {
-    const cuentas = await Account.find({ state: false }).populate('owner', 'username email');
+    const cuentas = await Account.find({ state: false }).populate('owner', 'name username email');
     return res.status(200).json({ success: true, cuentas });
   } catch (error) {
     console.error("Error al obtener cuentas pendientes:", error);
@@ -42,7 +42,7 @@ export const getPendingAccounts = async (req, res) => {
 
 export const getActiveAccounts = async (req, res) => {
   try {
-    const cuentas = await Account.find({ state: true }).populate('owner', 'username email');
+    const cuentas = await Account.find({ state: true }).populate('owner', 'name username email');
     return res.status(200).json({ success: true, cuentas });
   } catch (error) {
     console.error("Error al obtener cuentas activas:", error);
