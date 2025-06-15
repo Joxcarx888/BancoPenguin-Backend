@@ -77,3 +77,29 @@ export const listarPrizes = async (req, res) => {
     });
   }
 };
+
+export const eliminarPrize = async (req, res) => {
+  try {
+    const { prizeId } = req.params;
+
+    const prize = await Prize.findById(prizeId);
+    if (!prize) {
+      return res.status(404).json({ message: "Premio no encontrado" });
+    }
+
+    prize.activo = false;
+    await prize.save();
+
+    return res.status(200).json({
+      message: "Premio eliminado correctamente",
+      prize,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Error al eliminar el premio",
+      error: error.message,
+    });
+  }
+};
+
