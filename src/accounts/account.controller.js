@@ -76,7 +76,7 @@ export const getMyAccounts = async (req, res) => {
   try {
     const userId = req.usuario._id;
 
-    const cuentas = await Account.find({ owner: userId });
+    const cuentas = await Account.find({ owner: userId, state: true }).populate('owner', 'name username email');
 
     return res.status(200).json({
       success: true,
