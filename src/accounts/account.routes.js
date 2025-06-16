@@ -5,7 +5,8 @@ import {
   getActiveAccounts,
   acceptAccount,
   getMyAccounts,
-  deleteAccount
+  deleteAccount,
+  agregarSaldo
 } from "../accounts/account.controller.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
 
@@ -22,6 +23,9 @@ router.put("/aceptar/:id", validarJWT, acceptAccount);
 router.get("/mias", validarJWT, getMyAccounts);
 
 router.put("/desactivar/:id", validarJWT, deleteAccount);
+
+router.put("/agregar-saldo/:id", validarJWT, agregarSaldo);
+
 
 
 export default router;

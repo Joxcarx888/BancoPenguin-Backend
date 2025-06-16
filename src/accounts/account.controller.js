@@ -116,4 +116,36 @@ export const deleteAccount = async (req, res) => {
   }
 };
 
+export const agregarSaldo = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { monto } = req.body; 
+
+    if (!monto || monto <= 0) {
+      return res.status(400).json({ message: "Monto inválido, debe ser mayor que 0" });
+    }
+
+    const cuenta = await Account.findById(id);
+    if (!cuenta) {
+      return res.status(404).json({ message: "Cuenta no encontrada" });
+    }
+
+    if (!cuenta.state) {
+      return res.status(400).json({ message: "La cuenta está desactivada" });
+    }
+
+    cuenta.saldo += monto;
+    await cuenta.save();
+
+    return res.status(200).json({
+      message: `Saldo agregado correctamente. Nuevo saldo: Q${cuenta.saldo}`,
+      cuenta,
+    });
+  } catch (error) {
+    console.error("Error al agregar saldo:", error);
+    return res.status(500).json({ message: "Error interno del servidor" });
+  }
+};
+
+
 
