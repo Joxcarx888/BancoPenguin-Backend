@@ -140,12 +140,6 @@ export const updateMyProfile = async (req, res) => {
       });
     }
 
-    if (loggedUser.role !== 'CLIENT') {
-      return res.status(403).json({
-        success: false,
-        msg: 'Solo los clientes pueden editar su perfil.',
-      });
-    }
 
     const allowedFields = ['name', 'direccion', 'nombreTrabajo', 'montoMensual'];
     const updateData = {};
